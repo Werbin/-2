@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+       <style>
+         #div1{width: 100px;height: 50px;background: red;padding: 1px;}
+       </style>
+        <script>
+            window.onload=function()
+            {
+                var oDiv=document.getElementById('div1')
+
+                oDiv.onmouseover=function()
+                {
+                    sMove(400);
+                }
+                oDiv.onmouseout=function()
+                {
+                    sMove(100);
+                }
+                
+            }
+            var timer=null;
+            function sMove(iTar)
+            {
+                var oDiv=document.getElementById('div1');
+                clearInterval(timer);
+                timer=setInterval(function(){
+                    var t=parseInt(getComputedStyle(oDiv,false).width);
+                   
+                 var iSpeed=(iTar-t)/8;
+                 iSpeed=iSpeed>0?Math.ceil(iSpeed):Math.floor(iSpeed);
+                 if(t==iTar)
+                 {
+                     clearInterval(timer);
+                 }
+                 else{
+                     oDiv.style.width=t+iSpeed+'px';
+                 }
+
+                },30)
+
+            }
+        </script>
+    </head>
+    <body>
+        <div id="div1">
+            
+        </div>
+    </body>
+</html>
